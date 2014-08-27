@@ -3,5 +3,8 @@
   "version": "0.0.0",
   "description": "This keeps up with Disc Golf courses and scores!",
   "author": "R. Spencer Lynn",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "azure-storage": "~0.3.3"
+  }
 }

@@ -5,7 +5,11 @@
   "author": "spencerlynn",
   "license": "MIT",
   "dependencies": {
-    "azure-storage": "~0.3.3"
+    "azure-storage": "~0.3.3",
+    "express": "~4.8.5"
+  },
+  "scripts": {
+    "start": "node ./bin/www"
   },
   "devDependencies": {
     "jshint-stylish": "~0.4.0",

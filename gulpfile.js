@@ -1,6 +1,12 @@
 var gulp    = require('gulp'),
     jshint  = require('gulp-jshint'),
-    stylish = require('jshint-stylish'); 
+    stylish = require('jshint-stylish'),
+    jasmine = require('gulp-jasmine');
+
+gulp.task('jasmine', function(){
+  gulp.src('spec/**/*.js')
+      .pipe(jasmine());
+});
 
 gulp.task('jshint', function(){
   gulp.src('app/**/*.js')
@@ -9,5 +15,5 @@ gulp.task('jshint', function(){
 });
 
 gulp.task('default', function(){
-  gulp.start('jshint');
+  gulp.start('jshint', 'jasmine');
 });

@@ -9,7 +9,7 @@
     "express": "~4.8.5"
   },
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./server.js"
   },
   "devDependencies": {
     "jshint-stylish": "~0.4.0",

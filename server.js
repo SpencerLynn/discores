@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-var app = require('../app/server.js');
+var app = require('./app/server.js');
 
 app.set('port', process.env.PORT || 80);
 

@@ -9,7 +9,7 @@ gulp.task('jasmine', function(){
 });
 
 gulp.task('jshint', function(){
-  gulp.src('app/**/*.js')
+  gulp.src(['app/**/*.js', "lib/**/*.js"])
       .pipe(jshint())
       .pipe(jshint.reporter(stylish));
 });

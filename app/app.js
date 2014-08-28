@@ -4,7 +4,7 @@ var express = require('express'),
     bodyParser = require('body-parser');
 
 var app = express();
-app.use(bodyParse.json());
+app.use(bodyParser.json());
 app.use('/courses', courses);
 app.use('/scores', scores);
 

@@ -9,16 +9,22 @@ router.get('/', function(req, res) {
 });
 
 router.post('/', function(req, res) {
-  var body = req.body;
+  try {
+    var body = req.body;
 
-  var blobService = azure.createBlobService();
-  var courseManager = courseManagerCreator(blobService);
+    var blobService = azure.createBlobService();
+    var courseManager = courseManagerCreator(blobService);
 
-  courseManager.save(body).then(function(blob) {
-    res.writeHead(200, { 'content-type': 'application/json' });
-    res.write(JSON.stringify(blob));
+    courseManager.save(body).then(function(blob) {
+      res.writeHead(200, { 'content-type': 'application/json' });
+      res.write(JSON.stringify(blob));
+      res.end();
+    });
+  } catch (e) {
+    res.writeHead(500, { 'content-type': 'application/json' });
+    res.write(JSON.stringify(e));
     res.end();
-  });
+  }
 });
 
 module.exports = router;

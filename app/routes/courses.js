@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
-var courseManager = require('../../lib/courseManager.js');
+var azure = require('azure-storage');
+var blobService = azure.createBlobService();
+var courseManager = require('../../lib/courseManager.js')(blobService);
 
 router.get('/', function(req, res) {
   res.writeHead(200);

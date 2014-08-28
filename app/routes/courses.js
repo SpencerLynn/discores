@@ -16,14 +16,10 @@ router.post('/', function(req, res) {
     var courseManager = courseManagerCreator(blobService);
 
     courseManager.save(body).then(function(blob) {
-      res.writeHead(200, { 'content-type': 'application/json' });
-      res.write(JSON.stringify(blob));
-      res.end();
+      res.json(200, blob);
     });
   } catch (e) {
-    res.writeHead(500, { 'content-type': 'application/json' });
-    res.write(JSON.stringify(e));
-    res.end();
+    res.json(500, e);
   }
 });
 

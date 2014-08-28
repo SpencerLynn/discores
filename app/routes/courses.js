@@ -1,7 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var azure = require('azure-storage');
-var courseManagerCreator = require('../../lib/courseManager.js');
+var blobService = azure.createBlobService();
+var courseManager = require('../../lib/courseManager.js')(blobService);
 
 router.get('/', function(req, res) {
   res.writeHead(200);
@@ -10,12 +11,7 @@ router.get('/', function(req, res) {
 
 router.post('/', function(req, res) {
   try {
-    var body = req.body;
-
-    var blobService = azure.createBlobService();
-    var courseManager = courseManagerCreator(blobService);
-
-    courseManager.save(body).then(function(blob) {
+    courseManager.save(req.body).then(function(blob) {
       res.json(200, blob);
     });
   } catch (e) {

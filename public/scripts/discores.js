@@ -14,6 +14,21 @@
 
     self.courses = [];
 
+    self.newName = '';
+
+    self.save = function() {
+      if (!self.newName) return;
+      
+      var courseToSave = { 'name': self.newName };
+      $http.post('/courses', courseToSave)
+        .success(function() {
+          self.courses.push(courseToSave);
+        })
+        .error(function() {
+          alert("OH NOES!");
+        });
+    };
+
     $http.get('/courses')
       .success(function(data) {
         self.courses.length = 0;

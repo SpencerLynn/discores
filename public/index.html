@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>discores</title>
+  </head>
+  <body ng-app="discores">
+    <div ng-controller="CourseCtrl as courseCtrl">
+      <div>
+        courses:
+        <ul ng-show="courseCtrl.courses.length">
+          <li ng-repeat="course in courseCtrl.courses">
+            {{course.name}}
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="/scripts/angular.js"></script>
+    <script type="text/javascript" src="/scripts/angular-route.js"></script>
+    <script type="text/javascript" src="/scripts/discores.js"></script>
+  </body>
+</html>

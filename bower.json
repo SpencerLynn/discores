@@ -1,0 +1,23 @@
+{
+  "name": "discores",
+  "version": "0.0.0",
+  "homepage": "https://github.com/SpencerLynn/discores",
+  "authors": [
+    "Spencer Lynn <sllynn8907@gmail.com>"
+  ],
+  "moduleType": [
+    "node"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-route": "~1.2.23"
+  }
+}

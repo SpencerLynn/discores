@@ -1,13 +1,13 @@
 (function() {
   var app = angular.module('discores', ['ngRoute']);
 
-  // app.config(['$routeProvider', function($routeProvider) {
-  //   $routeProvider.otherwise('/courses/:course', {
-  //     templateUrl: '/views/courses.html',
-  //     controller: 'CourseCtrl',
-  //     controllerAs: 'courseCtrl'
-  //   });
-  // }]);
+  app.config(['$routeProvider', function($routeProvider) {
+    $routeProvider.otherwise({
+      templateUrl: '/views/courses.html',
+      controller: 'CourseCtrl',
+      controllerAs: 'courseCtrl'
+    });
+  }]);
 
   app.controller('CourseCtrl', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams) {
     var self = this;

@@ -13,6 +13,14 @@ describe('courseManager', function() {
         .and.callFake(function(container, name, course, cb) {
           cb(null, { done: true });
         });
+      spyOn(blobService, 'acquireLease')
+        .and.callFake(function (container, name, duration, cb) {
+          cb(null, { id: 7 });
+        });
+      spyOn(blobService, 'getBlobToText')
+        .and.callFake(function (container, name, cb) {
+          cb(null, []);
+        });
     });
 
     it('should save a course', function(done) {

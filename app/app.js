@@ -7,8 +7,8 @@ var express = require('express'),
 var app = express();
 app.use(express.static('public'));
 app.use(bodyParser.json());
-app.use('/courses', courses);
-app.use('/scores', scores);
-app.use('/players', players);
+app.use('/api/courses', courses);
+app.use('/api/scores', scores);
+app.use('/api/players', players);
 
 module.exports = app;

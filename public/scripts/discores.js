@@ -13,7 +13,15 @@
         controller: 'PlayerCtrl',
         controllerAs: 'playerCtrl'
       })
-      .otherwise({ redirectTo: '/courses' });
+      .when('/scores', {
+        templateUrl: '/views/scores.html',
+        controller: 'ScoreCtrl',
+        controllerAs: 'scoreCtrl'
+      })
+      .otherwise({
+        template: 'NOOOOO!'
+      });
+      //.otherwise({ redirectTo: '/courses' });
   }]);
 
   app.controller('CourseCtrl', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams) {
@@ -27,7 +35,7 @@
       if (!self.newName) return;
 
       var courseToSave = { 'name': self.newName };
-      $http.post('/courses', courseToSave)
+      $http.post('/api/courses', courseToSave)
         .success(function() {
           self.courses.push(courseToSave);
         })
@@ -36,7 +44,7 @@
         });
     };
 
-    $http.get('/courses')
+    $http.get('/api/courses')
       .success(function(data) {
         self.courses.length = 0;
         data.forEach(function(c) {
@@ -56,23 +64,30 @@
       if (!self.newPlayerName) return;
 
       var playerToSave = { 'name': self.newPlayerName };
-      $http.post('/players', playerToSave)
+      $http.post('/api/players', playerToSave)
         .success(function() {
           self.players.push(playerToSave);
         })
         .error(function(e) {
           alert('OH NOES - Something went wrong');
         });
-      
+
       self.newPlayerName = '';
     };
 
-    $http.get('/players')
+    $http.get('/api/players')
       .success(function(data) {
         self.players.length = 0;
         data.forEach(function(p) {
           self.players.push(p);
         });
+      });
+  }]);
+
+  app.controller('ScoreCtrl', ['$scope', '$http', '$routeParams', function ($scope, $http, $routeParams) {
+    var self = this;
+    $http.get('/api/scores')
+      .success(function(data) {
       });
   }]);
 })();

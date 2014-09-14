@@ -7,20 +7,20 @@ var playerManager = require('../../lib/playerManager.js')(blobService);
 router.get('/', function(req, res) {
   try {
     playerManager.getPlayers().then(function(players) {
-      res.json(200, players);
+      res.status(200).json(players);
     }).done();
   } catch(e) {
-    res.json(500, e);
+    res.status(500).json(e);
   }
 });
 
 router.post('/', function(req, res) {
   try {
     playerManager.createPlayer(req.body).then(function(blob) {
-      res.json(200, blob);
+      res.status(200).json(blob);
     }).done();
   } catch(e) {
-    res.json(500, e);
+    res.status(500).json(e);
   }
 });
 

@@ -1,1 +1,23 @@
-<h3>SCORES!</h3>
+<div>
+  <div>
+    Choose Course:
+
+    <select ng-model="scoreCtrl.selectedCourse" ng-options="course.name for course in scoreCtrl.allCourses"></select><br>
+  </div>
+
+  <div>
+    Players:
+    <ul>
+      <li ng-repeat="player in scoreCtrl.selectedPlayers">
+        {{player.name}}
+      </li>
+    </ul>
+
+    <select ng-model="scoreCtrl.newPlayer" ng-options="course.name for course in scoreCtrl.allPlayers"></select>
+    <button ng-click="scoreCtrl.addPlayer()">+</button>
+  </div>
+
+
+  <button ng-disabled="!scoreCtrl.selectedPlayers.length &#124;&#124; !scoreCtrl.selectedCourse"
+    ng-click="scoreCtrl.startGame()">Start New Game!</button>
+</div>

@@ -86,8 +86,47 @@
 
   app.controller('ScoreCtrl', ['$scope', '$http', '$routeParams', function ($scope, $http, $routeParams) {
     var self = this;
-    $http.get('/api/scores')
+
+    self.allCourses = [];
+    self.allPlayers = [];
+    self.selectedCourse = null;
+    self.selectedPlayers = [];
+    self.newPlayer = null;
+
+    self.startGame = function() {
+      if (self.selectedPlayers.length && self.selectedCourse) {
+        var courseName = self.selectedCourse.name;
+        var playersNames = self.selectedPlayers.map(function(p) { return p.name; }).join(',');
+        alert('Starting game at ' + courseName + ' with ' + playersNames);
+      }
+    };
+
+    self.addPlayer = function() {
+      for (var i = 0; i < self.selectedPlayers.length; i++) {
+        if (self.selectedPlayers[i].name === self.newPlayer.name) {
+          alert('Player already added');
+          return;
+        }
+      }
+
+      self.selectedPlayers.push(self.newPlayer);
+      self.newPlayer = null;
+    }
+
+    $http.get('/api/players')
       .success(function(data) {
+        self.allPlayers.length = 0;
+        data.forEach(function(p) {
+          self.allPlayers.push(p);
+        });
+      });
+
+    $http.get('/api/courses')
+      .success(function(data) {
+        self.allCourses.length = 0;
+        data.forEach(function(c) {
+          self.allCourses.push(c);
+        });
       });
   }]);
 })();

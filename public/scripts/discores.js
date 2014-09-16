@@ -113,6 +113,14 @@
       self.newPlayer = null;
     }
 
+    self.removePlayer = function(player) {
+      if (!player) return;
+      
+      self.selectedPlayers = self.selectedPlayers.filter(function(p) {
+        return p.name !== player.name;
+      });
+    }
+
     $http.get('/api/players')
       .success(function(data) {
         self.allPlayers.length = 0;

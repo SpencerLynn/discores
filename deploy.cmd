@@ -111,7 +111,7 @@ IF EXIST "%DEPLOYMENT_TARGET%\bower.json" (
   ::./node_modules/.bin/bower install
   ::IF !ERRORLEVEL! NEQ 0 goto error
   popd
-fi
+)
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 

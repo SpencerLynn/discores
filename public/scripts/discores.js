@@ -18,10 +18,12 @@
         controller: 'ScoreCtrl',
         controllerAs: 'scoreCtrl'
       })
+      // .otherwise({
+      //   template: 'NOOOOO!'
+      // });
       .otherwise({
-        template: 'NOOOOO!'
+        redirectTo: '/courses'
       });
-      //.otherwise({ redirectTo: '/courses' });
   }]);
 
   app.controller('CourseCtrl', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams) {
@@ -115,7 +117,7 @@
 
     self.removePlayer = function(player) {
       if (!player) return;
-      
+
       self.selectedPlayers = self.selectedPlayers.filter(function(p) {
         return p.name !== player.name;
       });

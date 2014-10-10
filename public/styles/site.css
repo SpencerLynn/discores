@@ -1,0 +1,51 @@
+body {
+  font-family: RobotoDraft, 'Helvetica Neue', Helvetica, Arial;
+  margin: 0;
+  padding: 24px;
+  color: #333;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -webkit-touch-callout: none;
+}
+
+core-header-panel {
+  height: 100%;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+#tabs {
+  width: 80%;
+  max-width: 600px;
+  margin: 10;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  text-transform: uppercase;
+}
+
+paper-tabs, core-toolbar {
+  color: #f1f1f1;
+  fill: #f1f1f1;
+  background: #000080;
+}
+
+core-toolbar paper-tabs {
+  box-shadow: none;
+}
+
+paper-tabs.core-selected {
+  color: #CF5300 !important;
+}
+
+paper-tabs::shadow #selectionBar {
+  background-color: #CF5300;
+}
+
+paper-tabs paper-tab::shadow #ink {
+  color: #CF5300;
+}

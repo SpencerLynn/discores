@@ -1,18 +1,52 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/platform/platform.js"></script>
+
+    <link rel="import" href="bower_components/paper-elements/paper-elements.html"></link>
+    <link rel="import" href="bower_components/font-roboto/roboto.html">
+    <link rel="import" href="bower_components/core-icons/core-icons.html">
+    <link rel="import" href="bower_components/core-toolbar/core-toolbar.html">
+    <link rel="import" href="bower_components/core-media-query/core-media-query.html">
+    <link rel="import" href="bower_components/paper-icon-button/paper-icon-button.html">
+    <link rel="import" href="bower_components/paper-tabs/paper-tabs.html">
+
+    <link rel="stylesheet" type="text/css" href="/styles/site.css">
+
     <title>discores</title>
   </head>
-  <body ng-app="discores">
-    <ul>
-      <li><a href="#/courses">Courses</a></li>
-      <li><a href="#/players">Players</a></li>
-      <li><a href="#/scores">Scores</a></li>
-    </ul>
-    <div ng-view></div>
+  <body unresolved ng-app="discores">
+    <div layout vertical fit>
+      <core-header-panel>
+        <core-toolbar>
+          <span>discores</span>
 
-    <script type="text/javascript" src="/scripts/angular.js"></script>
-    <script type="text/javascript" src="/scripts/angular-route.js"></script>
-    <script type="text/javascript" src="/scripts/discores.js"></script>
+          <paper-tabs id="tabs" selected="0" self-end>
+            <paper-tab>Courses</paper-tab>
+            <paper-tab>Players</paper-tab>
+            <paper-tab>Scores</paper-tab>
+          </paper-tabs>
+        </core-toolbar>
+
+        <div ng-view></div>
+      </core-header-panel>
+
+      <div style="display: none">
+        <a href="#/courses"></a>
+        <a href="#/players">Players</a>
+        <a href="#/scores">Scores</a>
+      </div>
+    </div>
   </body>
+
+  <script src="/scripts/discores.js"></script>
+  <script>
+      var tabs = document.querySelector('paper-tabs');
+      tabs.addEventListener('core-select', function(){
+          console.log("Selected: " + tabs.selected);
+
+      });
+  </script>
 </html>

@@ -108,9 +108,8 @@ IF EXIST "%DEPLOYMENT_TARGET%\package.json" (
 :: 4. Install bower packages
 IF EXIST "%DEPLOYMENT_TARGET%\bower.json" (
   pushd "%DEPLOYMENT_TARGET%"
-  ./node_modules/.bin/bower install
-  IF !ERRORLEVEL! NEQ 0 goto error
-
+  ::./node_modules/.bin/bower install
+  ::IF !ERRORLEVEL! NEQ 0 goto error
   popd
 fi
 

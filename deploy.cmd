@@ -111,8 +111,8 @@ IF EXIST "%DEPLOYMENT_TARGET%\bower.json" (
   call :ExecuteCmd !NPM_CMD! install --production
   IF !ERRORLEVEL! NEQ 0 goto error
 
-  call :ExecuteCmd ./node_modules/.bin/bower install
-  IF !ERRORLEVEL! NEQ 0 goto error
+  :: call :ExecuteCmd ./node_modules/.bin/bower install
+  :: IF !ERRORLEVEL! NEQ 0 goto error
 
   popd
 fi

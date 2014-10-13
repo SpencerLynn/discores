@@ -3,50 +3,40 @@
   <head>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
-    <script src="bower_components/platform/platform.js"></script>
-
-    <link rel="import" href="bower_components/paper-elements/paper-elements.html"></link>
-    <link rel="import" href="bower_components/font-roboto/roboto.html">
-    <link rel="import" href="bower_components/core-icons/core-icons.html">
-    <link rel="import" href="bower_components/core-toolbar/core-toolbar.html">
-    <link rel="import" href="bower_components/core-media-query/core-media-query.html">
-    <link rel="import" href="bower_components/paper-icon-button/paper-icon-button.html">
-    <link rel="import" href="bower_components/paper-tabs/paper-tabs.html">
-
     <link rel="stylesheet" type="text/css" href="/styles/site.css">
+
+    <!-- Bootstrap Material -->
+    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+    <link href="bower_components/bootstrap-material-design/dist/css/ripples.min.css" type="text/css" rel="stylesheet">
+    <link href="bower_components/bootstrap-material-design/dist/css/material-wfont.min.css" type="text/css" rel="stylesheet">
 
     <title>discores</title>
   </head>
-  <body unresolved ng-app="discores">
-    <div layout vertical fit>
-      <core-header-panel>
-        <core-toolbar>
-          <span>discores</span>
-
-          <paper-tabs id="tabs" selected="0" self-end>
-            <paper-tab>Courses</paper-tab>
-            <paper-tab>Players</paper-tab>
-            <paper-tab>Scores</paper-tab>
-          </paper-tabs>
-        </core-toolbar>
-
-        <div ng-view></div>
-      </core-header-panel>
-
-      <div style="display: none">
-        <a href="#/courses"></a>
-        <a href="#/players">Players</a>
-        <a href="#/scores">Scores</a>
+  <body ng-app="discores">
+    <div class="navbar navbar-default">
+      <div class="navbar-header">
+        <a class="navbar-brand">discores</a>
+      </div>
+      <div class="navbar-collapse collapse navbar-responsive-collapse">
+        <ul class="nav navbar-nav">
+          <li ng-class="{active: tab === 0}">
+            <a href="#/courses">Courses</a>
+          </li>
+          <li ng-class="{active: tab === 1}">
+            <a href="#/players">Players</a>
+          </li>
+          <li ng-class="{active: tab === 2}">
+            <a href="#/scores">Scores</a>
+          </li>
+        </ul>
       </div>
     </div>
+     <div ng-view></div>
   </body>
 
   <script src="/scripts/discores.js"></script>
-  <script>
-      var tabs = document.querySelector('paper-tabs');
-      tabs.addEventListener('core-select', function(){
-          console.log("Selected: " + tabs.selected);
-
-      });
-  </script>
+  <script src="bower_components/jQuery/dist/jQuery.min.js"></script>
+  <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="bower_components/bootstrap-material-design/dist/js/ripples.js"></script>
+  <script src="bower_components/bootstrap-material-design/dist/js/material.js"></script>
 </html>

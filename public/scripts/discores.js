@@ -29,6 +29,8 @@
   app.controller('CourseCtrl', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams) {
     var self = this;
 
+    $scope.$parent.tab = 0;
+
     self.courses = [];
 
     self.newName = '';
@@ -57,6 +59,8 @@
 
   app.controller('PlayerCtrl', ['$scope', '$http', '$routeParams', function ($scope, $http, $routeParams) {
     var self = this;
+
+    $scope.$parent.tab = 1;
 
     self.players = [];
 
@@ -88,6 +92,8 @@
 
   app.controller('ScoreCtrl', ['$scope', '$http', '$routeParams', function ($scope, $http, $routeParams) {
     var self = this;
+
+    $scope.$parent.tab = 2;
 
     self.allCourses = [];
     self.allPlayers = [];

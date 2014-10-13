@@ -1,23 +1,39 @@
 <div>
-  <div>
-    Choose Course:
-    <select ng-model="scoreCtrl.selectedCourse" ng-options="course.name for course in scoreCtrl.allCourses"></select><br>
+  <div class="form-group">
+    <label class="control-label">Choose Course:</label>
+    <select class="form-control medium-width" ng-model="scoreCtrl.selectedCourse" ng-options="course.name for course in scoreCtrl.allCourses"></select><br>
   </div>
 
-  <div>
-    Players:
-    <ul>
-      <li ng-repeat="player in scoreCtrl.selectedPlayers">
-        {{player.name}}
-        <button ng-click="scoreCtrl.removePlayer(player)">-</button>
-      </li>
-    </ul>
+  <table class="table medium-width">
+    <thead>
+      <tr>
+        <th>Players</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="player in scoreCtrl.selectedPlayers">
+        <td class="dominant-row vcenter">
+          {{player.name}}
+        </td>
+        <td>
+          <i class="btn btn-danger icon-material-close" ng-click="scoreCtrl.removePlayer(player)"></i>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 
-    <select ng-model="scoreCtrl.newPlayer" ng-options="course.name for course in scoreCtrl.allPlayers"></select>
-    <button ng-click="scoreCtrl.addPlayer()">+</button>
+  <div class="form-group medium-width">
+    <label class="control-label">Add a player</label>
+    <div class="input-group">
+      <select class="form-control" ng-model="scoreCtrl.newPlayer" ng-options="course.name for course in scoreCtrl.allPlayers"></select>
+      <span class="input-group-btn">
+        <button class="btn btn-success icon-material-add" type="button" ng-click="scoreCtrl.addPlayer()" ng-disabled="!scoreCtrl.newPlayer"></button>
+      </span>
+    </div>
   </div>
 
 
-  <button ng-disabled="!scoreCtrl.selectedPlayers.length &#124;&#124; !scoreCtrl.selectedCourse"
+  <button class="btn btn-primary" ng-disabled="!scoreCtrl.selectedPlayers.length &#124;&#124; !scoreCtrl.selectedCourse"
     ng-click="scoreCtrl.startGame()">Start New Game!</button>
 </div>

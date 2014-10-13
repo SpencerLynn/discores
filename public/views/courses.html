@@ -1,11 +1,29 @@
 <div>
-  courses:
-  <ul>
-    <li ng-repeat="course in courseCtrl.courses">
-      {{course.name}}
-    </li>
-  </ul>
 
-  <input type="text" ng-model="courseCtrl.newName" placeholder="Where ya playin'?" />
-  <button ng-click="courseCtrl.save()">Save</button>
+  <table class="table medium-width">
+    <thead>
+      <tr>
+        <th>Courses</th>
+        <th>Par</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="course in courseCtrl.courses">
+        <td class="vcenter">
+          {{course.name}}
+        </td>
+        <td>
+          TBD!
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="form-group medium-width">
+    <label class="">Don't see your course?</label>
+    <div class="input-group">
+      <input class="form-control medium-width" type="text" ng-model="courseCtrl.newName" placeholder="Where ya playin'?" />
+    </div>
+    <button class="btn btn-primary" ng-click="courseCtrl.save()">Add</button>
+  </div>
 </div>

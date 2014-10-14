@@ -108,6 +108,8 @@ IF EXIST "%DEPLOYMENT_TARGET%\package.json" (
 :: 4. Install bower packages
 IF EXIST "%DEPLOYMENT_TARGET%\bower.json" (
   pushd "%DEPLOYMENT_TARGET%"
+  call :ExecuteCmd rm -rf bower_components/jQuery
+
   call :ExecuteCmd ./node_modules/.bin/bower update
   IF !ERRORLEVEL! NEQ 0 goto error
   popd

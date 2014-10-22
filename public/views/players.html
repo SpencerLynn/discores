@@ -15,10 +15,12 @@
   </table>
 
   <div class="form-group medium-width">
-    <label class="">Don't see yourself?</label>
+    <label class="control-label">Don't see yourself?</label>
     <div class="input-group">
-      <input class="form-control medium-width" type="text" ng-model="playerCtrl.newPlayerName" placeholder="Who's playin'?" />
+      <input class="form-control floating-label" type="text" ng-model="playerCtrl.newPlayerName" placeholder="Who's playin'?" />
+      <span class="input-group-btn">
+        <button class="btn btn-primary" ng-click="playerCtrl.save()">Save</button>
+      </span>
     </div>
-    <button class="btn btn-primary" ng-click="playerCtrl.save()">Save</button>
   </div>
 </div>

@@ -23,7 +23,7 @@
     <div class="input-group">
       <input class="form-control floating-label" type="text" ng-model="courseCtrl.newName" placeholder="Where ya playin'?" />
       <span class="input-group-btn">
-        <button class="btn btn-primary" ng-click="courseCtrl.save()">Add</button>
+        <button class="btn btn-primary" ng-click="courseCtrl.save()" ng-disabled="!courseCtrl.newName">Add</button>
       </span>
     </div>
   </div>

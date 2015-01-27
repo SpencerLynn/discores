@@ -19,7 +19,7 @@
     <div class="input-group">
       <input class="form-control floating-label" type="text" ng-model="playerCtrl.newPlayerName" placeholder="Who's playin'?" />
       <span class="input-group-btn">
-        <button class="btn btn-primary" ng-click="playerCtrl.save()">Save</button>
+        <button class="btn btn-primary" ng-click="playerCtrl.save()" ng-disabled="!playerCtrl.newPlayerName">Save</button>
       </span>
     </div>
   </div>

@@ -13,23 +13,79 @@
         controller: 'PlayerCtrl',
         controllerAs: 'playerCtrl'
       })
-      .when('/scores', {
-        templateUrl: '/views/scores.html',
-        controller: 'ScoreCtrl',
-        controllerAs: 'scoreCtrl'
+      .when('/game', {
+        templateUrl: '/views/game.html',
+        controller: 'GameCtrl',
+        controllerAs: 'gameCtrl'
       })
       // .otherwise({
       //   template: 'NOOOOO!'
       // });
       .otherwise({
-        redirectTo: '/courses'
+        redirectTo: '/game'
+      });
+  }]);
+
+  app.controller('GameCtrl', ['$scope', '$http', '$routeParams', function ($scope, $http, $routeParams) {
+    var self = this;
+
+    $scope.$parent.tab = 0;
+
+    self.allCourses = [];
+    self.allPlayers = [];
+    self.selectedCourse = null;
+    self.selectedPlayers = [];
+    self.newPlayer = null;
+
+    self.startGame = function() {
+      if (self.selectedPlayers.length && self.selectedCourse) {
+        var courseName = self.selectedCourse.name;
+        var playersNames = self.selectedPlayers.map(function(p) { return p.name; }).join(',');
+        console.log('Starting game at ' + courseName + ' with ' + playersNames);
+      }
+    };
+
+    self.addPlayer = function() {
+      for (var i = 0; i < self.selectedPlayers.length; i++) {
+        if (self.selectedPlayers[i].name === self.newPlayer.name) {
+          alert('Player already added');
+          return;
+        }
+      }
+
+      self.selectedPlayers.push(self.newPlayer);
+      self.newPlayer = null;
+    }
+
+    self.removePlayer = function(player) {
+      if (!player) return;
+
+      self.selectedPlayers = self.selectedPlayers.filter(function(p) {
+        return p.name !== player.name;
+      });
+    }
+
+    $http.get('/api/players')
+      .success(function(data) {
+        self.allPlayers.length = 0;
+        data.forEach(function(p) {
+          self.allPlayers.push(p);
+        });
+      });
+
+    $http.get('/api/courses')
+      .success(function(data) {
+        self.allCourses.length = 0;
+        data.forEach(function(c) {
+          self.allCourses.push(c);
+        });
       });
   }]);
 
   app.controller('CourseCtrl', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams) {
     var self = this;
 
-    $scope.$parent.tab = 0;
+    $scope.$parent.tab = 1;
 
     self.courses = [];
 
@@ -69,7 +125,7 @@
   app.controller('PlayerCtrl', ['$scope', '$http', '$routeParams', function ($scope, $http, $routeParams) {
     var self = this;
 
-    $scope.$parent.tab = 1;
+    $scope.$parent.tab = 2;
 
     self.players = [];
 
@@ -95,62 +151,6 @@
         self.players.length = 0;
         data.forEach(function(p) {
           self.players.push(p);
-        });
-      });
-  }]);
-
-  app.controller('ScoreCtrl', ['$scope', '$http', '$routeParams', function ($scope, $http, $routeParams) {
-    var self = this;
-
-    $scope.$parent.tab = 2;
-
-    self.allCourses = [];
-    self.allPlayers = [];
-    self.selectedCourse = null;
-    self.selectedPlayers = [];
-    self.newPlayer = null;
-
-    self.startGame = function() {
-      if (self.selectedPlayers.length && self.selectedCourse) {
-        var courseName = self.selectedCourse.name;
-        var playersNames = self.selectedPlayers.map(function(p) { return p.name; }).join(',');
-        alert('Starting game at ' + courseName + ' with ' + playersNames);
-      }
-    };
-
-    self.addPlayer = function() {
-      for (var i = 0; i < self.selectedPlayers.length; i++) {
-        if (self.selectedPlayers[i].name === self.newPlayer.name) {
-          alert('Player already added');
-          return;
-        }
-      }
-
-      self.selectedPlayers.push(self.newPlayer);
-      self.newPlayer = null;
-    }
-
-    self.removePlayer = function(player) {
-      if (!player) return;
-
-      self.selectedPlayers = self.selectedPlayers.filter(function(p) {
-        return p.name !== player.name;
-      });
-    }
-
-    $http.get('/api/players')
-      .success(function(data) {
-        self.allPlayers.length = 0;
-        data.forEach(function(p) {
-          self.allPlayers.push(p);
-        });
-      });
-
-    $http.get('/api/courses')
-      .success(function(data) {
-        self.allCourses.length = 0;
-        data.forEach(function(c) {
-          self.allCourses.push(c);
         });
       });
   }]);

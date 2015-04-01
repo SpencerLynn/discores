@@ -1,0 +1,39 @@
+<div>
+  <div class="form-group medium-width">
+    <label class="control-label">Choose Course:</label>
+    <select class="form-control" ng-model="gameCtrl.selectedCourse" ng-options="course.name for course in gameCtrl.allCourses"></select><br>
+  </div>
+
+  <table class="table medium-width">
+    <thead>
+      <tr>
+        <th>Players</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="player in gameCtrl.selectedPlayers">
+        <td class="dominant-row vcenter">
+          {{player.name}}
+        </td>
+        <td>
+          <i class="btn btn-danger icon-material-close" ng-click="gameCtrl.removePlayer(player)"></i>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="form-group medium-width">
+    <label class="control-label">Add a player</label>
+    <div class="input-group">
+      <select class="form-control" ng-model="gameCtrl.newPlayer" ng-options="course.name for course in gameCtrl.allPlayers"></select>
+      <span class="input-group-btn">
+        <button class="btn btn-success icon-material-add" type="button" ng-click="gameCtrl.addPlayer()" ng-disabled="!gameCtrl.newPlayer"></button>
+      </span>
+    </div>
+  </div>
+
+
+  <button class="btn btn-primary" ng-disabled="!gameCtrl.selectedPlayers.length &#124;&#124; !gameCtrl.selectedCourse"
+    ng-click="gameCtrl.startGame()">Start New Game!</button>
+</div>

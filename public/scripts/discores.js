@@ -34,11 +34,20 @@
     self.courses = [];
 
     self.newName = '';
+    self.newPar = '';
+    self.newNumberOfHoles = '';
 
     self.save = function() {
-      if (!self.newName) return;
+      if (!self.newName || self.newPar < 1 || self.newNumberOfHoles < 1) {
+        return;
+      }
 
-      var courseToSave = { 'name': self.newName };
+      var courseToSave = {
+        'name': self.newName,
+        'par': self.newPar,
+        'numberOfHoles': self.newNumberOfHoles
+      };
+
       $http.post('/api/courses', courseToSave)
         .success(function() {
           self.courses.push(courseToSave);

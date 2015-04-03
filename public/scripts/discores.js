@@ -13,6 +13,11 @@
         controller: 'PlayerCtrl',
         controllerAs: 'playerCtrl'
       })
+      .when('/game/results/:gameId', {
+        templateUrl: 'views/game-results.html',
+        controller: 'ResultsCtrl',
+        controllerAs: 'resultsCtrl'
+      })
       .when('/game/:gameId/:holeNumber', {
         templateUrl: 'views/play-game.html',
         controller: 'PlayCtrl',
@@ -28,6 +33,42 @@
       });
   }]);
 
+  app.controller('ResultsCtrl', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams) {
+    var self = this;
+    self.game = null;
+    self.holes = [];
+    self.playersScores = [];
+
+    $http.get('/api/game/' + $routeParams.gameId)
+      .success(function(g) {
+        self.game = g;
+
+        for (var i = 0; i < self.game.course.numberOfHoles; i++) {
+          self.holes.push(i + 1);
+        }
+
+        self.game.players.forEach(function(p) {
+          var sum = self.game.scores[p.name].reduce(function(sum, h) {
+            sum += h;
+            return sum;
+          }, 0);
+
+          var result = '';
+          if (sum === self.game.course.par) {
+            result = 'E';
+          } else {
+            result = 0 - (self.game.course.par - sum);
+          }
+
+          self.playersScores.push({
+            'name': p.name,
+            'scores': self.game.scores[p.name],
+            'result': result
+          })
+        });
+      });
+  }]);
+
   app.controller('PlayCtrl', ['$scope', '$http', '$routeParams', '$location', function($scope, $http, $routeParams, $location) {
     var self = this;
 
@@ -38,7 +79,7 @@
 
     self.nextHole = function() {
       if (self.holeNumber < 1) {
-        alert('Oh no! Invalid URL. Current hole is less than 1. Taking to Hole 1.');
+        alert('Oh no! Invalid URL. Current hole is less than 1. Go Go Hole 1.');
         $location.path('/game/' + self.game.id + '/' + 1);
       }
 
@@ -51,8 +92,7 @@
         .success(function(game) {
           self.holeNumber++;
           if (self.holeNumber > self.game.course.numberOfHoles) {
-            //$location.path('/results/' + game.id + '/' + );
-            alert("Game completed!");
+            $location.path('/game/results/' + game.id + '/');
           } else {
             $location.path('/game/' + game.id + '/' + self.holeNumber);
           }

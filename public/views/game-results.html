@@ -1,0 +1,27 @@
+<div>
+
+  <h2>Course: {{resultsCtrl.game.course.name}}</h2>
+
+  <table class="table medium-width">
+    <thead>
+      <tr>
+        <th>Player</th>
+        <th ng-repeat="hole in resultsCtrl.holes">Hole {{hole}}</th>
+        <th>Result</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="player in resultsCtrl.playersScores">
+        <td class="vcenter">
+          {{player.name}}
+        </td>
+        <td class="vcenter" ng-repeat="score in player.scores track by $index">
+          {{score}}
+        </td>
+        <td ng-repeat-end>
+          {{player.result}}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

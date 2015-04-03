@@ -13,20 +13,66 @@
         controller: 'PlayerCtrl',
         controllerAs: 'playerCtrl'
       })
+      .when('/game/:gameId/:holeNumber', {
+        templateUrl: 'views/play-game.html',
+        controller: 'PlayCtrl',
+        controllerAs: 'playCtrl'
+      })
       .when('/game', {
-        templateUrl: '/views/game.html',
+        templateUrl: '/views/create-game.html',
         controller: 'GameCtrl',
         controllerAs: 'gameCtrl'
       })
-      // .otherwise({
-      //   template: 'NOOOOO!'
-      // });
       .otherwise({
         redirectTo: '/game'
       });
   }]);
 
-  app.controller('GameCtrl', ['$scope', '$http', '$routeParams', function ($scope, $http, $routeParams) {
+  app.controller('PlayCtrl', ['$scope', '$http', '$routeParams', '$location', function($scope, $http, $routeParams, $location) {
+    var self = this;
+
+    // Map of UUID: [scores per hole]
+    self.game = null;
+    self.holeNumber = $routeParams.holeNumber;
+    self.holeScores = {};
+
+    self.nextHole = function() {
+      if (self.holeNumber < 1) {
+        alert('Oh no! Invalid URL. Current hole is less than 1. Taking to Hole 1.');
+        $location.path('/game/' + self.game.id + '/' + 1);
+      }
+
+      // Save the current hole
+      self.game.players.forEach(function(p) {
+        self.game.scores[p.name][self.holeNumber-1] = self.holeScores[p.name];
+      });
+
+      $http.post('/api/game/update', self.game)
+        .success(function(game) {
+          self.holeNumber++;
+          if (self.holeNumber > self.game.course.numberOfHoles) {
+            //$location.path('/results/' + game.id + '/' + );
+            alert("Game completed!");
+          } else {
+            $location.path('/game/' + game.id + '/' + self.holeNumber);
+          }
+        })
+        .error(function(e) {
+          alert('Uh oh! Error moving to next hole :(');
+        });
+    };
+
+    $http.get('/api/game/' + $routeParams.gameId)
+      .success(function(g) {
+        self.game = g;
+
+        self.game.players.forEach(function(p) {
+          self.holeScores[p.name] = self.game.scores[p.name][self.holeNumber-1] || 0;
+        });
+      });
+  }]);
+
+  app.controller('GameCtrl', ['$scope', '$http', '$routeParams', '$location', function ($scope, $http, $routeParams, $location) {
     var self = this;
 
     $scope.$parent.tab = 0;
@@ -38,11 +84,28 @@
     self.newPlayer = null;
 
     self.startGame = function() {
-      if (self.selectedPlayers.length && self.selectedCourse) {
-        var courseName = self.selectedCourse.name;
-        var playersNames = self.selectedPlayers.map(function(p) { return p.name; }).join(',');
-        console.log('Starting game at ' + courseName + ' with ' + playersNames);
+      if (!self.selectedPlayers.length || !self.selectedCourse) {
+        return;
       }
+
+      var courseName = self.selectedCourse.name;
+      var playersNames = _.pluck(self.selectedPlayers, 'name').join(',');
+      console.log('Starting game at ' + courseName + ' with ' + playersNames);
+
+      // Begin the game and change the view
+      var newGame = {
+        course: self.selectedCourse,
+        players: self.selectedPlayers
+      };
+
+      $http.post('/api/game', newGame)
+        .success(function(game) {
+          // Change window location
+          $location.path('/game/' + game.id + '/' + 1);
+        })
+        .error(function(e) {
+          alert('Whoops! Error beginning game');
+        });
     };
 
     self.addPlayer = function() {

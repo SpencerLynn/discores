@@ -1,0 +1,27 @@
+<div>
+
+  <h2>Course: {{playCtrl.game.course.name}}<h2>
+  <h3>Hole {{playCtrl.holeNumber}}</h3>
+
+  <table class="table medium-width">
+    <thead>
+      <tr>
+        <th>Player</th>
+        <th>Hole Score<th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="player in playCtrl.game.players">
+        <td class="vcenter">
+          {{player.name}}
+        </td>
+        <td class="vcenter">
+          <input class="form-control floating-label" type="number" ng-model="playCtrl.holeScores[player.name]" placeholder="How'd ya do?"></input>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <button class="btn btn-primary" ng-click="playCtrl.nextHole()">Next Hole</button>
+
+</div>

@@ -48,7 +48,7 @@
         }
 
         self.game.players.forEach(function(p) {
-          var sum = self.game.scores[p.name].reduce(function(sum, h) {
+          var sum = self.game.scores[p.id].reduce(function(sum, h) {
             sum += h;
             return sum;
           }, 0);
@@ -62,7 +62,7 @@
 
           self.playersScores.push({
             'name': p.name,
-            'scores': self.game.scores[p.name],
+            'scores': self.game.scores[p.id],
             'result': result
           })
         });
@@ -72,7 +72,6 @@
   app.controller('PlayCtrl', ['$scope', '$http', '$routeParams', '$location', function($scope, $http, $routeParams, $location) {
     var self = this;
 
-    // Map of UUID: [scores per hole]
     self.game = null;
     self.holeNumber = $routeParams.holeNumber;
     self.holeScores = {};
@@ -85,7 +84,7 @@
 
       // Save the current hole
       self.game.players.forEach(function(p) {
-        self.game.scores[p.name][self.holeNumber-1] = self.holeScores[p.name];
+        self.game.scores[p.id][self.holeNumber-1] = self.holeScores[p.id];
       });
 
       $http.post('/api/game/update', self.game)
@@ -107,7 +106,7 @@
         self.game = g;
 
         self.game.players.forEach(function(p) {
-          self.holeScores[p.name] = self.game.scores[p.name][self.holeNumber-1] || 0;
+          self.holeScores[p.id] = self.game.scores[p.id][self.holeNumber-1] || 0;
         });
       });
   }]);
@@ -150,7 +149,7 @@
 
     self.addPlayer = function() {
       for (var i = 0; i < self.selectedPlayers.length; i++) {
-        if (self.selectedPlayers[i].name === self.newPlayer.name) {
+        if (self.selectedPlayers[i].id === self.newPlayer.id) {
           alert('Player already added');
           return;
         }
@@ -164,7 +163,7 @@
       if (!player) return;
 
       self.selectedPlayers = self.selectedPlayers.filter(function(p) {
-        return p.name !== player.name;
+        return p.id !== player.id;
       });
     }
 

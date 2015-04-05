@@ -14,6 +14,16 @@ router.get('/', function(req, res) {
   }
 });
 
+router.get('/:playerId/games', function(req, res) {
+  try {
+    playerManager.getPlayersGames(req.params.playerId).then(function(gameIds) {
+      res.status(200).json(gameIds);
+    }).done();
+  } catch(e) {
+    res.status(500).json(e);
+  }
+});
+
 router.post('/', function(req, res) {
   try {
     playerManager.createPlayer(req.body).then(function(blob) {

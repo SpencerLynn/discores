@@ -8,6 +8,11 @@
         controller: 'CourseCtrl',
         controllerAs: 'courseCtrl'
       })
+      .when('/players/:playerId/games', {
+        templateUrl:'views/player-games.html',
+        controller: 'PlayerGamesCtrl',
+        controllerAs: 'playerGamesCtrl'
+      })
       .when('/players', {
         templateUrl: '/views/players.html',
         controller: 'PlayerCtrl',
@@ -109,6 +114,19 @@
           self.holeScores[p.id] = self.game.scores[p.id][self.holeNumber-1] || 0;
         });
       });
+  }]);
+
+  app.controller('PlayerGamesCtrl', ['$scope', '$http', '$routeParams', function ($scope, $http, $routeParams) {
+    var self = this;
+
+    self.games = [];
+    self.playerId = $routeParams.playerId;
+
+    $http.get('/api/players/' + self.playerId + '/games/')
+      .success(function(data) {
+        self.games = data;
+      });
+
   }]);
 
   app.controller('GameCtrl', ['$scope', '$http', '$routeParams', '$location', function ($scope, $http, $routeParams, $location) {

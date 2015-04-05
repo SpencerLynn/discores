@@ -1,0 +1,21 @@
+<div>
+  <table class="table medium-width">
+    <thead>
+      <tr>
+        <th>Course</th>
+        <th>Date</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="game in playerGamesCtrl.games">
+        <td class="vcenter">
+          {{game.course.name}}
+        </td>
+        <td>
+          {{game.date}}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

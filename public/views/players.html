@@ -3,12 +3,16 @@
     <thead>
       <tr>
         <th>Players</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
       <tr ng-repeat="player in playerCtrl.players">
         <td class="vcenter">
           {{player.name}}
+        </td>
+        <td>
+          <a href="#/players/{{player.id}}/games/">Historic Games</a>
         </td>
       </tr>
     </tbody>

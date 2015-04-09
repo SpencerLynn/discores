@@ -4,6 +4,7 @@
       <tr>
         <th>Course</th>
         <th>Date</th>
+        <th>Your Result</th>
         <th></th>
       </tr>
     </thead>
@@ -16,7 +17,10 @@
           {{game.date}}
         </td>
         <td>
-          <a href="#/game/results/{{game.id}}">View Results</a>
+          {{game.myResult}}
+        </td>
+        <td>
+          <a href="#/game/results/{{game.id}}">View Full Game</a>
         </td>
       </tr>
     </tbody>

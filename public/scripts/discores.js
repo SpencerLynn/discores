@@ -124,7 +124,14 @@
 
     $http.get('/api/players/' + self.playerId + '/games/')
       .success(function(data) {
-        self.games = data;
+        self.games = data.map(function(g) {
+          var sum = g.scores[self.playerId].reduce(function(sum, h) {
+            sum += h;
+            return sum;
+          }, 0);
+          g.myResult = 0 - (g.course.par - sum);
+          return g;
+        });
       });
 
   }]);

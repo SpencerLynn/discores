@@ -121,6 +121,12 @@
 
     self.games = [];
     self.playerId = $routeParams.playerId;
+    self.playerNameLabel = null;
+
+    $http.get('/api/players/' + self.playerId)
+      .success(function(data) {
+        self.playerNameLabel = data.name + "'s Games";
+      });
 
     $http.get('/api/players/' + self.playerId + '/games/')
       .success(function(data) {

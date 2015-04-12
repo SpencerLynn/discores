@@ -80,6 +80,12 @@
     self.game = null;
     self.holeNumber = $routeParams.holeNumber;
     self.holeScores = {};
+    self.nextHoleBtnLabel = self.holeNumber != 18 ? 'Next Hole' : 'Finish Game';
+
+    self.prevHole = function() {
+      var prevHole = self.holeNumber - 1;
+      $location.path('/game/' + self.game.id + '/' + prevHole);
+    };
 
     self.nextHole = function() {
       if (self.holeNumber < 1) {

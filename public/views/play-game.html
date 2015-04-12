@@ -22,6 +22,7 @@
     </tbody>
   </table>
 
-  <button class="btn btn-primary" ng-click="playCtrl.nextHole()">Next Hole</button>
+  <button class="btn btn-primary" ng-click="playCtrl.prevHole()" ng-disabled="playCtrl.holeNumber <= 1">Previous Hole</button>
+  <button class="btn btn-primary" ng-click="playCtrl.nextHole()">{{playCtrl.nextHoleBtnLabel}}</button>
 
 </div>

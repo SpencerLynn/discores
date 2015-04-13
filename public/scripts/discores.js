@@ -63,6 +63,9 @@
             result = 'E';
           } else {
             result = 0 - (self.game.course.par - sum);
+            if (result > 0) {
+              result = '+' + result;
+            }
           }
 
           self.playersScores.push({
@@ -146,6 +149,11 @@
             return sum;
           }, 0);
           g.myResult = 0 - (g.course.par - sum);
+          if (g.myResult == 0) {
+            g.myResult = 'E';
+          } else if (g.myResult > 0) {
+            g.myResult = '+' + g.myResult;
+          }
           return g;
         });
       });

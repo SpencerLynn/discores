@@ -80,7 +80,7 @@
     self.game = null;
     self.holeNumber = $routeParams.holeNumber;
     self.holeScores = {};
-    self.nextHoleBtnLabel = self.holeNumber != 18 ? 'Next Hole' : 'Finish Game';
+    self.nextHoleBtnLabel = 'Next Hole';
 
     self.prevHole = function() {
       var prevHole = self.holeNumber - 1;
@@ -115,6 +115,10 @@
     $http.get('/api/game/' + $routeParams.gameId)
       .success(function(g) {
         self.game = g;
+
+        if (self.game.course.numberOfHoles == self.holeNumber) {
+          self.nextHoleBtnLabel = 'Finish Game';
+        }
 
         self.game.players.forEach(function(p) {
           self.holeScores[p.id] = self.game.scores[p.id][self.holeNumber-1] || 0;

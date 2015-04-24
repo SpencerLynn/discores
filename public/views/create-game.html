@@ -14,10 +14,10 @@
     </thead>
     <tbody>
       <tr ng-repeat="player in gameCtrl.selectedPlayers">
-        <td class="dominant-row vcenter">
+        <td class="vcenter">
           {{player.name}}
         </td>
-        <td>
+        <td class="push-right">
           <i class="btn mdi-action-delete red" ng-click="gameCtrl.removePlayer(player)"></i>
         </td>
       </tr>

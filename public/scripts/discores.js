@@ -127,6 +127,13 @@
       .success(function(g) {
         self.game = g;
 
+        if (self.holeNumber > self.game.course.numberOfHoles) {
+          var lastHole = self.game.course.numberOfHoles;
+          Materialize.toast(self.holeNumber + ' is not a valid hole.. Let\'s try the last hole instead.', 3000, 'rounded');
+          $location.path('/game/' + $routeParams.gameId + '/' + lastHole);
+          return;
+        }
+
         if (self.game.course.numberOfHoles == self.holeNumber) {
           self.nextHoleBtnLabel = 'Finish Game';
         }

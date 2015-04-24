@@ -3,7 +3,7 @@
   <h4>Course: {{playCtrl.game.course.name}}</h4>
   <h5>Hole {{playCtrl.holeNumber}}</h5>
 
-  <table class="table medium-width">
+  <table class="bordered">
     <thead>
       <tr>
         <th>Player</th>
@@ -24,6 +24,8 @@
     </tbody>
   </table>
 
-  <button class="btn waves-effect waves-light" ng-click="playCtrl.prevHole()" ng-disabled="playCtrl.holeNumber <= 1">Previous Hole</button>
-  <button class="btn waves-effect waves-light" ng-click="playCtrl.nextHole()">{{playCtrl.nextHoleBtnLabel}}</button>
+  <div class="row">
+    <button class="btn waves-effect waves-light" ng-click="playCtrl.prevHole()" ng-disabled="playCtrl.holeNumber <= 1">Previous Hole</button>
+    <button class="btn waves-effect waves-light" ng-click="playCtrl.nextHole()">{{playCtrl.nextHoleBtnLabel}}</button>
+  </div>
 </div>

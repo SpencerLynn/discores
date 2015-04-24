@@ -81,7 +81,14 @@
     var self = this;
 
     self.game = null;
+
     self.holeNumber = $routeParams.holeNumber;
+    if (self.holeNumber < 1) {
+      Materialize.toast(self.holeNumber + ' is not a valid hole.. Let\'s try 1 instead.', 3000, 'rounded');
+      $location.path('/game/' + $routeParams.gameId + '/' + 1);
+      return;
+    }
+
     self.holeScores = {};
     self.nextHoleBtnLabel = 'Next Hole';
 
@@ -92,8 +99,9 @@
 
     self.nextHole = function() {
       if (self.holeNumber < 1) {
-        alert('Oh no! Invalid URL. Current hole is less than 1. Go Go Hole 1.');
+        Materialize.toast('Oh no! Invalid hole number. Let\'s try hole 1.', 3000, 'rounded')
         $location.path('/game/' + self.game.id + '/' + 1);
+        return;
       }
 
       // Save the current hole
@@ -111,7 +119,7 @@
           }
         })
         .error(function(e) {
-          alert('Uh oh! Error moving to next hole :(');
+          Materialize.toast('Uh oh! Error moving to next hole :(', 3000, 'rounded');
         });
     };
 
@@ -192,14 +200,14 @@
           $location.path('/game/' + game.id + '/' + 1);
         })
         .error(function(e) {
-          alert('Whoops! Error beginning game');
+          Materialize.toast('Whoops! Error beginning game', 3000, 'rounded');
         });
     };
 
     self.addPlayer = function() {
       for (var i = 0; i < self.selectedPlayers.length; i++) {
         if (self.selectedPlayers[i].id === self.newPlayer.id) {
-          alert('Player already added');
+          Materialize.toast('Player already playing!', 3000, 'rounded');
           return;
         }
       }
@@ -270,7 +278,7 @@
           self.courses.push(courseToSave);
         })
         .error(function(e) {
-          alert('OH NOES!');
+          Materialize.toast('OH NOES! Error saving course', 3000, 'rounded');
         });
     };
 
@@ -301,7 +309,7 @@
           self.players.push(playerToSave);
         })
         .error(function(e) {
-          alert('OH NOES - Something went wrong');
+          Materialize.toast('Welp... Error saving player', 3000, 'rounded');
         });
 
       self.newPlayerName = '';

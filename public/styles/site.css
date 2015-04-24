@@ -17,3 +17,7 @@ div.nav-wrapper {
   margin-left: 10px;
   margin-right: 10px;
 }
+
+td.push-right {
+  text-align: right;
+}

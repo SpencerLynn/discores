@@ -1,5 +1,5 @@
 <div>
-  <table class="table medium-width">
+  <table class="table">
     <thead>
       <tr>
         <th>Courses</th>
@@ -22,19 +22,28 @@
     </tbody>
   </table>
 
-  <div class="form-group medium-width">
-    <label class="control-label">Don't see your course?</label>
-    <br/>
-    Where ya playin?
-    <input class="form-control floating-label" type="text" ng-model="courseCtrl.newName" placeholder="Where ya playin'?" />
-    What's Par?
-    <input class="form-control floating-label" type="number" ng-model="courseCtrl.newPar" placeholder="What's par?" />
-    How Many Holes?
-    <input class="form-control floating-label" type="number" ng-model="courseCtrl.newNumberOfHoles" placeholder="How many holes?" />
-    <span class="input-group-btn">
-      <button class="btn btn-primary" ng-click="courseCtrl.save()" ng-disabled="!courseCtrl.newName || courseCtrl.newPar < 1 || courseCtrl.newNumberOfHoles < 1">
-        Add
-      </button>
-    </span>
+  <div class="row">
+    <label>Playing somewhere else?</label>
+
+    <div class="input-field">
+      <input id="new-course-name-input" type="text" ng-model="courseCtrl.newName" />
+      <label for="new-course-name-input">Where ya playin'?</label>
+    </div>
+
+    <div class="input-field">
+      <input id="new-course-par-input" type="number" ng-model="courseCtrl.newPar" />
+      <label for="new-course-par-input">What's par?</label>
+    </div>
+
+    <div class="input-field">
+      <input id="new-course-holes-input" type="number" ng-model="courseCtrl.newNumberOfHoles" />
+      <label for="new-course-holes-input">How many holes?</label>
+    </div>
+  </div>
+
+  <div class="row">
+    <button class="btn waves-effect waves-light" ng-click="courseCtrl.save()"
+      ng-disabled="!courseCtrl.newName || courseCtrl.newPar < 1 || courseCtrl.newNumberOfHoles < 1">Add
+    </button>
   </div>
 </div>

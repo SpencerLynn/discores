@@ -1,5 +1,5 @@
 <div>
-  <table class="table medium-width">
+  <table class="table">
     <thead>
       <tr>
         <th>Players</th>
@@ -12,19 +12,22 @@
           {{player.name}}
         </td>
         <td>
-          <a href="#/players/{{player.id}}/games/">Historic Games</a>
+          <a class="btn waves-effect waves-light" href="#/players/{{player.id}}/games/">Completed Games</a>
         </td>
       </tr>
     </tbody>
   </table>
 
-  <div class="form-group medium-width">
-    <label class="control-label">Don't see yourself?</label>
-    <div class="input-group">
-      <input class="form-control floating-label" type="text" ng-model="playerCtrl.newPlayerName" placeholder="Who's playin'?" />
-      <span class="input-group-btn">
-        <button class="btn btn-primary" ng-click="playerCtrl.save()" ng-disabled="!playerCtrl.newPlayerName">Save</button>
-      </span>
+  <div class="row">
+    <label>Don't see yourself?</label>
+    <div class="input-field">
+      <input id="new-player-input" type="text" ng-model="playerCtrl.newPlayerName" />
+      <label for="new-player-input">Who's playin'?</label>
     </div>
+  </div>
+  <div class="row">
+    <button class="btn waves-effect waves-light" ng-click="playerCtrl.save()" ng-disabled="!playerCtrl.newPlayerName">
+      Save
+    </button>
   </div>
 </div>

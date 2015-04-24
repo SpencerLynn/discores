@@ -222,6 +222,11 @@
         data.forEach(function(p) {
           self.allPlayers.push(p);
         });
+
+        // Set up material selects, but on if both players/courses are populated
+        if (self.allCourses.length > 0) {
+          $('select').material_select();
+        }
       });
 
     $http.get('/api/courses')
@@ -230,6 +235,11 @@
         data.forEach(function(c) {
           self.allCourses.push(c);
         });
+
+        // Set up material selects, but on if both players/courses are populated
+        if (self.allPlayers.length > 0) {
+          $('select').material_select();
+        }
       });
   }]);
 

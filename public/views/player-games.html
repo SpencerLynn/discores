@@ -1,7 +1,7 @@
 <div>
-  <h3>{{playerGamesCtrl.playerNameLabel}}</h3>
+  <h4>{{playerGamesCtrl.playerNameLabel}}</h4>
 
-  <table class="table medium-width">
+  <table class="table">
     <thead>
       <tr>
         <th>Course</th>
@@ -22,7 +22,7 @@
           {{game.myResult}}
         </td>
         <td>
-          <a href="#/game/results/{{game.id}}">View Full Game</a>
+          <a class="btn waves-effect waves-light" href="#/game/results/{{game.id}}">View Full Game</a>
         </td>
       </tr>
     </tbody>

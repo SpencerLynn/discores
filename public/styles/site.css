@@ -1,18 +1,7 @@
-div.navbar-default {
-  #background: #11118A;
-}
-
 li.active {
   border-bottom-color: #06F4FF;
   border-bottom-width: medium;
   border-bottom-style: solid;
-}
-
-input.medium-width,
-select.medium-width,
-table.medium-width,
-.medium-width {
-  width: 35%;
 }
 
 td.dominant-row {
@@ -23,6 +12,7 @@ td.dominant-row {
   vertical-align: middle !important;
 }
 
-div.sub-view {
+div.sub-view,
+div.nav-wrapper {
   margin-left: 10px;
 }

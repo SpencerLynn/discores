@@ -1,7 +1,7 @@
 <div>
 
-  <h2>Course: {{playCtrl.game.course.name}}</h2>
-  <h3>Hole {{playCtrl.holeNumber}}</h3>
+  <h4>Course: {{playCtrl.game.course.name}}</h4>
+  <h5>Hole {{playCtrl.holeNumber}}</h5>
 
   <table class="table medium-width">
     <thead>
@@ -16,13 +16,14 @@
           {{player.name}}
         </td>
         <td class="vcenter">
-          <input class="form-control floating-label" type="number" ng-model="playCtrl.holeScores[player.id]" placeholder="How'd ya do?"></input>
+          <div class="input-field">
+            <input type="number" ng-model="playCtrl.holeScores[player.id]" placeholder="How'd ya do?" />
+          </div>
         </td>
       </tr>
     </tbody>
   </table>
 
-  <button class="btn btn-primary" ng-click="playCtrl.prevHole()" ng-disabled="playCtrl.holeNumber <= 1">Previous Hole</button>
-  <button class="btn btn-primary" ng-click="playCtrl.nextHole()">{{playCtrl.nextHoleBtnLabel}}</button>
-
+  <button class="btn waves-effect waves-light" ng-click="playCtrl.prevHole()" ng-disabled="playCtrl.holeNumber <= 1">Previous Hole</button>
+  <button class="btn waves-effect waves-light" ng-click="playCtrl.nextHole()">{{playCtrl.nextHoleBtnLabel}}</button>
 </div>

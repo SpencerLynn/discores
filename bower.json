@@ -19,7 +19,7 @@
   ],
   "dependencies": {
     "angular-route": "~1.2.23",
-    "jQuery": "~2.1.1",
+    "jQuery": "~2.1.4",
     "underscore": "~1.8.3",
     "materialize": "~0.96.1"
   }

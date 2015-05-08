@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <script src="/scripts/angular.js"></script>
-    <script src="/scripts/angular-route.js"></script>
+    <script src="/vendor/angular/angular.min.js"></script>
+    <script src="/vendor/angular-route/angular-route.min.js"></script>
     <link href="/styles/site.css" type="text/css" rel="stylesheet">
 
     <!--Import materialize.css-->
-    <link type="text/css" rel="stylesheet" href="/styles/materialize.min.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="/vendor/materialize/dist/css/materialize.min.css"  media="screen,projection"/>
 
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
@@ -51,10 +51,10 @@
     <div ng-view class="sub-view"></div>
   </body>
 
-  <script src="/scripts/underscore-min.js"></script>
+  <script src="/vendor/underscore/underscore-min.js"></script>
   <script src="/scripts/discores.js"></script>
-  <script src="/scripts/jQuery.min.js"></script>
-  <script src="/scripts/materialize.min.js"></script>
+  <script src="/vendor/jQuery/dist/jQuery.min.js"></script>
+  <script src="/vendor/materialize/dist/js/materialize.min.js"></script>
   <script>
     $(function() {
       $('.button-collapse').sideNav({

@@ -1,3 +1,8 @@
+# NPM modules
 node_modules/
-bower_components/
+
+# Bower components
+public/vendor/
+
+# Mac folder access
 .DS_Store

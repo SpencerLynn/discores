@@ -17,3 +17,7 @@ div.nav-wrapper {
 td.push-right {
   text-align: right;
 }
+
+.below-select {
+  z-index: 0 !important;
+}

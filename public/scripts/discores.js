@@ -180,8 +180,6 @@
 
     $scope.$parent.tab = 0;
 
-    self.allCourses = [];
-    self.allPlayers = [];
     self.selectedCourse = null;
     self.selectedPlayers = [];
     self.newPlayer = null;
@@ -212,6 +210,10 @@
     };
 
     self.addPlayer = function() {
+      if (!self.newPlayer || !self.newPlayer.name) {
+        return;
+      }
+      
       for (var i = 0; i < self.selectedPlayers.length; i++) {
         if (self.selectedPlayers[i].id === self.newPlayer.id) {
           Materialize.toast('Player already playing!', 3000, 'rounded');
@@ -233,28 +235,12 @@
 
     $http.get('/api/players')
       .success(function(data) {
-        self.allPlayers.length = 0;
-        data.forEach(function(p) {
-          self.allPlayers.push(p);
-        });
-
-        // Set up material selects, but on if both players/courses are populated
-        if (self.allCourses.length > 0) {
-          $('select').material_select();
-        }
+        self.allPlayers = data;
       });
 
     $http.get('/api/courses')
       .success(function(data) {
-        self.allCourses.length = 0;
-        data.forEach(function(c) {
-          self.allCourses.push(c);
-        });
-
-        // Set up material selects, but on if both players/courses are populated
-        if (self.allPlayers.length > 0) {
-          $('select').material_select();
-        }
+        self.allCourses = data;
       });
   }]);
 

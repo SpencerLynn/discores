@@ -1,6 +1,6 @@
 <div>
-  <div class="row input-field">
-    <select class="browser-default" ng-model="gameCtrl.selectedCourse" ng-options="course.name for course in gameCtrl.allCourses">
+  <div class="input-field">
+    <select ng-model="gameCtrl.selectedCourse" ng-options="course.name for course in gameCtrl.allCourses" ng-if="gameCtrl.allCourses">
       <option value="">Choose a Course</option>
     </select>
   </div>
@@ -23,7 +23,7 @@
       </tr>
       <tr>
         <td>
-          <select class="browser-default" ng-model="gameCtrl.newPlayer" ng-options="player.name for player in gameCtrl.allPlayers">
+          <select ng-model="gameCtrl.newPlayer" ng-options="player.name for player in gameCtrl.allPlayers" ng-if="gameCtrl.allPlayers">
             <option value="">Add a Player</option>
           </select>
         </td>
@@ -35,7 +35,7 @@
   </table>
 
   <div class="row">
-    <button class="btn waves-effect waves-light"
+    <button class="btn waves-effect waves-light below-select"
       ng-disabled="!gameCtrl.selectedPlayers.length &#124;&#124; !gameCtrl.selectedCourse"
       ng-click="gameCtrl.startGame()">Start New Game!</button>
   </div>

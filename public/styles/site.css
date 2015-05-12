@@ -21,3 +21,15 @@ td.push-right {
 .below-select {
   z-index: 0 !important;
 }
+
+.add-row {
+  background-color: #eee;
+}
+
+.select-label {
+  left: 0 !important;
+}
+
+.div-top-margin {
+  margin-top: 2rem !important;
+}

@@ -1,8 +1,7 @@
 <div>
-  <div class="input-field">
-    <select ng-model="gameCtrl.selectedCourse" ng-options="course.name for course in gameCtrl.allCourses" ng-if="gameCtrl.allCourses">
-      <option value="">Choose a Course</option>
-    </select>
+  <div class="input-field div-top-margin">
+    <select ng-model="gameCtrl.selectedCourse" ng-options="course.name for course in gameCtrl.allCourses" ng-if="gameCtrl.allCourses"></select>
+    <label class="select-label">Where ya playin'??</label>
   </div>
 
   <table class="row bordered">
@@ -21,11 +20,12 @@
           <i class="btn mdi-action-delete red" ng-click="gameCtrl.removePlayer(player)"></i>
         </td>
       </tr>
-      <tr>
+      <tr class="add-row">
         <td>
-          <select ng-model="gameCtrl.newPlayer" ng-options="player.name for player in gameCtrl.allPlayers" ng-if="gameCtrl.allPlayers">
-            <option value="">Add a Player</option>
-          </select>
+          <div class="input-field">
+            <select ng-model="gameCtrl.newPlayer" ng-options="player.name for player in gameCtrl.allPlayers" ng-if="gameCtrl.allPlayers"></select>
+            <label class="select-label">Add a Player</label>
+          </div>
         </td>
         <td class="push-right">
           <button class="btn mdi-content-add" ng-click="gameCtrl.addPlayer()" ng-disabled="!gameCtrl.newPlayer"></button>

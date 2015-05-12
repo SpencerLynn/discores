@@ -1,11 +1,11 @@
 <div>
-  <div class="input-field">
+  <div class="row input-field">
     <select class="browser-default" ng-model="gameCtrl.selectedCourse" ng-options="course.name for course in gameCtrl.allCourses">
       <option value="">Choose a Course</option>
     </select>
   </div>
 
-  <table class="bordered">
+  <table class="row bordered">
     <thead>
       <tr>
         <th>Players</th>
@@ -21,22 +21,22 @@
           <i class="btn mdi-action-delete red" ng-click="gameCtrl.removePlayer(player)"></i>
         </td>
       </tr>
+      <tr>
+        <td>
+          <select class="browser-default" ng-model="gameCtrl.newPlayer" ng-options="player.name for player in gameCtrl.allPlayers">
+            <option value="">Add a Player</option>
+          </select>
+        </td>
+        <td class="push-right">
+          <i class="btn mdi-content-add" ng-click="gameCtrl.addPlayer()" ng-disabled="!gameCtrl.newPlayer"></i>
+        </td>
+      </tr>
     </tbody>
   </table>
-
-  <div class="row">
-    <div class="input-field">
-      <select class="browser-default" ng-model="gameCtrl.newPlayer" ng-options="course.name for course in gameCtrl.allPlayers">
-        <option value="">Add a Player</option>
-      </select>
-      <button class="btn mdi-content-add" ng-click="gameCtrl.addPlayer()" ng-disabled="!gameCtrl.newPlayer"></button>
-    </div>
-  </div>
 
   <div class="row">
     <button class="btn waves-effect waves-light"
       ng-disabled="!gameCtrl.selectedPlayers.length &#124;&#124; !gameCtrl.selectedCourse"
       ng-click="gameCtrl.startGame()">Start New Game!</button>
   </div>
-
 </div>

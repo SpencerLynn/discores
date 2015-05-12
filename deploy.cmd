@@ -110,6 +110,9 @@ IF EXIST "%DEPLOYMENT_TARGET%\bower.json" (
   pushd "%DEPLOYMENT_TARGET%"
   call :ExecuteCmd !NPM_CMD! install bower
   IF !ERRORLEVEL! NEQ 0 goto error
+  :: Fresh install of vendor bower pkgs
+  call :ExecuteCmd rm -rf public/vendor/*
+  IF !ERRORLEVEL! NEQ 0 goto error
   call :ExecuteCmd bower install
   IF !ERRORLEVEL! NEQ 0 goto error
   popd

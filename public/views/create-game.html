@@ -1,6 +1,8 @@
 <div>
   <div class="input-field div-top-margin">
-    <select ng-model="gameCtrl.selectedCourse" ng-options="course.name for course in gameCtrl.allCourses" ng-if="gameCtrl.allCourses"></select>
+    <select ng-model="gameCtrl.selectedCourse" ng-options="course.name for course in gameCtrl.allCourses" ng-if="gameCtrl.allCourses">
+      <option value=""></option>
+    </select>
     <label class="select-label">Where ya playin'??</label>
   </div>
 
@@ -23,7 +25,9 @@
       <tr class="add-row">
         <td>
           <div class="input-field">
-            <select ng-model="gameCtrl.newPlayer" ng-options="player.name for player in gameCtrl.allPlayers" ng-if="gameCtrl.allPlayers"></select>
+            <select ng-model="gameCtrl.newPlayer" ng-options="player.name for player in gameCtrl.allPlayers" ng-if="gameCtrl.allPlayers">
+              <option value=""></option>
+            </select>
             <label class="select-label">Add a Player</label>
           </div>
         </td>

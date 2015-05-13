@@ -214,11 +214,13 @@
         return;
       }
       
-      for (var i = 0; i < self.selectedPlayers.length; i++) {
-        if (self.selectedPlayers[i].id === self.newPlayer.id) {
-          Materialize.toast('Player already playing!', 3000, 'rounded');
-          return;
-        }
+      var playerExists = _.find(self.selectedPlayers, function(p) {
+        return p.id === self.newPlayer.id;
+      });
+      
+      if (playerExists) {
+        Materialize.toast('Player already playing!', 3000, 'rounded');
+        return;
       }
 
       self.selectedPlayers.push(self.newPlayer);

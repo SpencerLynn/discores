@@ -16,9 +16,9 @@
           {{player.name}}
         </td>
         <td class="vcenter">
-          <div class="input-field">
-            <input type="number" ng-model="playCtrl.holeScores[player.id]" placeholder="How'd ya do?" />
-          </div>
+          <i class="btn mdi-content-remove" ng-click="playCtrl.removeStrokeForPlayer(player.id)"></i>
+          <div class="player-score">{{playCtrl.holeScores[player.id]}}</div>
+          <i class="btn mdi-content-add" ng-click="playCtrl.addStrokeForPlayer(player.id)"></i>
         </td>
       </tr>
     </tbody>

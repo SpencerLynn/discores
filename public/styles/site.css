@@ -33,3 +33,9 @@ td.push-right {
 .div-top-margin {
   margin-top: 2rem !important;
 }
+
+.player-score {
+  margin-right: 15px;
+  margin-left: 15px;
+  display: inline;
+}

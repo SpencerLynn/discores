@@ -122,6 +122,14 @@
           Materialize.toast('Uh oh! Error moving to next hole :(', 3000, 'rounded');
         });
     };
+    
+    self.removeStrokeForPlayer = function(playerId) {
+      self.holeScores[playerId]--;
+    };
+    
+    self.addStrokeForPlayer = function(playerId) {
+      self.holeScores[playerId]++;
+    };
 
     $http.get('/api/game/' + $routeParams.gameId)
       .success(function(g) {

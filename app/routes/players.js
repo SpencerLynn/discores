@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var _ = require('underscore');
+var _ = require('lodash');
 var azure = require('azure-storage');
 var blobService = azure.createBlobService();
 var playerManager = require('../../lib/playerManager.js')(blobService);
